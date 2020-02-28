@@ -8,11 +8,7 @@ import java.util.List;
 
 @Entity(name = "shopping_cart")
 @Table(name = "shopping_cart")
-public class ShoppingCart {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+public class ShoppingCart extends WebshopEntity {
 
   @NotNull
   @Column(name = "user_id")
@@ -28,14 +24,6 @@ public class ShoppingCart {
 
   @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL)
   private List<ShoppingCartProduct> shoppingCartProducts;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
 
   public Integer getUserId() {
     return userId;
