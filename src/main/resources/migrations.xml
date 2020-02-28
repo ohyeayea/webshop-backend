@@ -1,0 +1,121 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="Carlos van der Linden" id="1">
+        <createTable tableName="user">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="prefix" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="address" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="zip_code" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="city" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="role" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="product">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="float">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="shopping_cart">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="user_id" nullable="false" references="user(id)"/>
+            </column>
+            <column name="total_price" type="float">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="shopping_cart_product">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="shopping_cart_id" type="bigint">
+                <constraints foreignKeyName="shopping_cart_id" nullable="false" references="shopping_cart(id)"/>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints foreignKeyName="product_id" nullable="false" references="product(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="order">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="user_id" nullable="false" references="user(id)"/>
+            </column>
+            <column name="total_price" type="float">
+                <constraints nullable="true"/>
+            </column>
+            <column name="address" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zip_code" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_method" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="order_product">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="order_id" type="bigint">
+                <constraints foreignKeyName="order_id" nullable="false" references="order(id)"/>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints foreignKeyName="product_id" nullable="false" references="product(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
