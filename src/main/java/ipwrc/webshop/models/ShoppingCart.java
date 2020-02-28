@@ -22,7 +22,7 @@ public class ShoppingCart {
   private Integer totalPrice;
 
   @OneToOne(fetch = FetchType.LAZY)
-  @PrimaryKeyJoinColumn
+  @JoinColumn(name = "user")
   @JsonBackReference
   private User user;
 
