@@ -26,7 +26,7 @@ public class WebShopApplication extends Application<WebShopConfiguration> {
   @Override
   public void run(final WebShopConfiguration configuration,
                   final Environment environment) {
-//     TODO: implement application
+//     TODO: implement application.
   }
 
 }
