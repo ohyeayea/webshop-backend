@@ -6,11 +6,11 @@ import java.util.List;
 
 @Entity(name = "product")
 @Table(name = "product")
-public class Product extends WebshopEntity {
+public class Product {
 
-//  @Id
-//  @GeneratedValue(strategy = GenerationType.IDENTITY)
-//  private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
   @NotNull
   private String title;
@@ -27,6 +27,14 @@ public class Product extends WebshopEntity {
 
   @OneToMany(mappedBy = "product", orphanRemoval = true, cascade = CascadeType.ALL)
   private List<ShoppingCartProduct> shoppingCartProducts;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public String getTitle() {
     return title;

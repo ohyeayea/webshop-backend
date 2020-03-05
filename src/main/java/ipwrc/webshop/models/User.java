@@ -5,7 +5,11 @@ import javax.validation.constraints.NotNull;
 
 @Entity(name = "user")
 @Table(name = "user")
-public class User extends WebshopEntity {
+public class User {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
   @NotNull
   private String email;
@@ -25,6 +29,14 @@ public class User extends WebshopEntity {
 
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
   private ShoppingCart shoppingCart;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public String getEmail() {
     return email;

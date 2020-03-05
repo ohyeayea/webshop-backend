@@ -8,7 +8,11 @@ import javax.validation.constraints.NotNull;
 
 @Entity(name = "shopping_cart_product")
 @Table(name = "shopping_cart_product")
-public class ShoppingCartProduct extends WebshopEntity {
+public class ShoppingCartProduct {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
   @NotNull
   @Column(name = "shopping_cart_id")
@@ -27,6 +31,14 @@ public class ShoppingCartProduct extends WebshopEntity {
   @JoinColumn(name = "shopping_cart")
   @JsonBackReference
   private ShoppingCart shoppingCart;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public Integer getShoppingCartId() {
     return shoppingCartId;
