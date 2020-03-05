@@ -5,6 +5,8 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import ipwrc.webshop.core.HibernateBundle;
 import ipwrc.webshop.core.MigrationsBundle;
+import ipwrc.webshop.persistences.ProductDAO;
+import org.hibernate.SessionFactory;
 
 public class WebShopApplication extends Application<WebShopConfiguration> {
 
@@ -14,7 +16,7 @@ public class WebShopApplication extends Application<WebShopConfiguration> {
 
   @Override
   public String getName() {
-    return "HelloWorld";
+    return "Webshop";
   }
 
   @Override
@@ -24,9 +26,7 @@ public class WebShopApplication extends Application<WebShopConfiguration> {
   }
 
   @Override
-  public void run(final WebShopConfiguration configuration,
-                  final Environment environment) {
-//     TODO: implement application.
-  }
+  public void run(final WebShopConfiguration configuration, final Environment environment) {
 
+  }
 }
